@@ -37,7 +37,8 @@ void Reshape(int width, int height)
 	for (int j = 0; j < punkt1_y.wielkosc; j++)
 	if (punkt1_y.dane[i].Re > punkt1_y.dane[j].Re)
 		wysokosc = i;
-	gluOrtho2D(0, punkt1_y.wielkosc + 1, 0, 80);
+	gluOrtho2D(-1, 365, -200, 200);
+	//gluOrtho2D(0, punkt1_y.wielkosc + 1, 0, 80);
 	wykres_rodzaj();
 }
 
@@ -48,7 +49,7 @@ void Wykres::Tworzenie_okna(int argc, char **argv)
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(500, 500);
 	glutInitWindowSize(800, 600);
-	glutCreateWindow("OKNO");
+	glutCreateWindow("Wykres 1");
 	glutDisplayFunc(wykres_rodzaj);
 	glutReshapeFunc(Reshape);
 	glutMainLoop();
