@@ -9,7 +9,7 @@
 #include "Obliczenia.h"
 #include "Macierz.h"
 #include "wykres.h"
-
+#include <thread>
 using namespace std;
 
 
