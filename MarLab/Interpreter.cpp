@@ -55,7 +55,10 @@ void Interpreter::parser(string wiersz, int argc, char **argv)
 			tym = "";
 			tym += wiersz[wiersz.length() - 2];
 			rysowanie_wykres.punkt_y = Baza_zmienne.Odczytywanie_zmiennych(tym);
-			rysowanie_wykres.Tworzenie_okna(argc, argv);
+			
+			thread wykres(&Wykres::Tworzenie_okna,&rysowanie_wykres,argc,argv);
+			wykres.detach();
+		//	wykres.join();
 		}
 		else
 		{
