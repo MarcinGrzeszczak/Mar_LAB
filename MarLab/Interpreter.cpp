@@ -89,8 +89,9 @@ void Interpreter::parser(string wiersz, int argc, char **argv)
 			if (Baza_zmienne.czy_liczba(komenda) || Baza_zmienne.czy_zespolona(komenda))
 			{
 
-				robocza.wielkosc = 1;
-				robocza.dane = new zespolone[robocza.wielkosc];
+				robocza.kolumny = 1;
+				robocza.wiersze = 1;
+				robocza.dane = new zespolone[robocza.kolumny*robocza.wiersze];
 
 				if (Baza_zmienne.czy_liczba(komenda))
 				{
@@ -123,7 +124,7 @@ void Interpreter::parser(string wiersz, int argc, char **argv)
 					}
 				}
 
-				Baza_zmienne.Dodawanie_zmiennych(nazwa, komenda, robocza.wielkosc, robocza.dane);
+				Baza_zmienne.Dodawanie_zmiennych(nazwa, komenda, robocza.kolumny,robocza.wiersze, robocza.dane);
 			}
 			else
 			{
@@ -157,7 +158,7 @@ void Interpreter::parser(string wiersz, int argc, char **argv)
 
 					}
 
-					Baza_zmienne.Dodawanie_zmiennych(nazwa, komenda, robocza.wielkosc, robocza.dane);
+					Baza_zmienne.Dodawanie_zmiennych(nazwa, komenda, robocza.kolumny,robocza.wiersze, robocza.dane);
 				}
 		}
 	}
@@ -166,19 +167,26 @@ void Interpreter::parser(string wiersz, int argc, char **argv)
 void Interpreter::Wyswietl(zmienna odczyt)
 {
 	if (odczyt.nazwa != "!@#$%^&*()")
-	for (int i = 0; i < odczyt.wielkosc; i++)
+
+	for (int i = 0,j=0; i < (odczyt.wiersze*odczyt.kolumny); i++)
 	{
-		cout <<"\t"<<to_string(odczyt.dane[i].Re);
-		if (odczyt.dane[i].Im != 0)
+		if (j >= odczyt.kolumny)
 		{
-			if (odczyt.dane[i].Im > 0)
-				cout << " + " << to_string(odczyt.dane[i].Im)<<"i";
-			if (odczyt.dane[i].Im < 0)
-				cout << " - " << to_string(odczyt.dane[i].Im*-1) << "i";
+			cout << endl;
+			j = 0;
 		}
-		cout << endl;
+			cout << "\t" << to_string(odczyt.dane[i].Re);
+			if (odczyt.dane[i].Im != 0)
+			{
+				if (odczyt.dane[i].Im > 0)
+					cout << " + " << to_string(odczyt.dane[i].Im) << "i";
+				if (odczyt.dane[i].Im < 0)
+					cout << " - " << to_string(odczyt.dane[i].Im*-1) << "i";
+			}
+			j++;
 	}
 	else
 		cout << "\tBLAD"<<endl;
+	cout << endl;
 }
 

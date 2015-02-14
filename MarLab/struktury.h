@@ -13,7 +13,8 @@ struct zmienna
 {
 	string nazwa;
 	string komenda;
-	int wielkosc;
+	int wiersze;
+	int kolumny;
 	zespolone *dane;
 };
 

@@ -1,13 +1,14 @@
 #include "Obsluga_zmiennych.h"
 
-void Obsluga_zmiennych::Dodawanie_zmiennych(string nazwa, string komenda, int wielkosc, zespolone *dane)
+void Obsluga_zmiennych::Dodawanie_zmiennych(string nazwa, string komenda, int kolumny,int wiersze, zespolone *dane)
 {
 	bool dodaj = true;
 	tymczasowa.nazwa = nazwa;
 	tymczasowa.komenda = komenda;
-	tymczasowa.wielkosc = wielkosc;
-	tymczasowa.dane = new zespolone[wielkosc];
-	for (int j = 0; j < wielkosc; j++)
+	tymczasowa.kolumny = kolumny;
+	tymczasowa.wiersze = wiersze;
+	tymczasowa.dane = new zespolone[kolumny*wiersze];
+	for (int j = 0; j < (kolumny*wiersze); j++)
 		tymczasowa.dane[j] = dane[j];
 
 	for (int i = 0; i < Baza_zmiennych.size(); i++)

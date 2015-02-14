@@ -75,11 +75,11 @@ zmienna Obliczenia::Oblicz(string komenda)
 	}
 
 		for (int i = 0; i < tymczasowe_zmienne.size();i++)
-			if (maximum < tymczasowe_zmienne[i].wielkosc)
-				maximum = tymczasowe_zmienne[i].wielkosc;
+			if (maximum < tymczasowe_zmienne[i].kolumny)
+				maximum = tymczasowe_zmienne[i].kolumny;
 	
-	rob.wielkosc = maximum;
-	rob.dane = new zespolone[rob.wielkosc];
+	rob.kolumny = maximum;
+	rob.dane = new zespolone[rob.kolumny];
 	tymczas = Dzialanie;
 	for (int m = 0; m < maximum; m++)
 	{
@@ -92,7 +92,7 @@ zmienna Obliczenia::Oblicz(string komenda)
 
 				if (tymczasowe_zmienne[t].nazwa == Dzialanie[i])
 				{
-					if (m > tymczasowe_zmienne[t].wielkosc)
+					if (m > tymczasowe_zmienne[t].kolumny)
 						Dzialanie[i] = to_string(tymczasowe_zmienne[t].dane[0].Re);
 					else
 						Dzialanie[i] = to_string(tymczasowe_zmienne[t].dane[m].Re);
@@ -143,7 +143,7 @@ zmienna Obliczenia::Oblicz(string komenda)
 		}
 
 		///////////////////////////////////////////////////////
-		
+		rob.wiersze = 1;
 		rob.dane[m].Re= stof(Dzialanie[0]);
 		rob.dane[m].Im = 0;
 	}
